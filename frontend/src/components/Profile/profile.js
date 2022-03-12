@@ -24,24 +24,24 @@ export default class Profile extends Component {
 
                 <div className="form-group">
                     <label>Full name</label>
-                    <input type="text" className="form-control" placeholder="Full name" 
+                    <input type="text" maxlength="50" className="form-control" placeholder="Full name" 
                         onChange={e => this.name = e.target.value}/>
                 </div>
 
                 <div className="form-group">
                     <label>Address 1</label>
-                    <input type="text" className="form-control" placeholder="Address 1" 
+                    <input type="text" maxlength="100" className="form-control" placeholder="Address 1" 
                         onChange={e => this.address1 = e.target.value}/>
                 </div>
 
                 <div className="form-group">
                     <label>Address 2</label>
-                    <input type="text" className="form-control" placeholder="Address 2" 
+                    <input type="text" maxlength="100" className="form-control" placeholder="Address 2" 
                         onChange={e => this.address2 = e.target.value}/>
                 </div>
                 <div className="form-group">
                     <label>City</label>
-                    <input type="text" className="form-control" placeholder="City" 
+                    <input type="text" maxlength="100" className="form-control" placeholder="City" 
                         onChange={e => this.city = e.target.value}/>
                 </div>
                 <div className="form-group">
@@ -101,7 +101,7 @@ export default class Profile extends Component {
                 </div>
                 <div className="form-group">
                     <label>Zipcode</label>
-                    <input type="text" className="form-control" placeholder="Zipcode" 
+                    <input type="text" minlength="5" maxlength="9" className="form-control" placeholder="Zipcode" 
                         onChange={e => this.zipcode = e.target.value}/>
                 </div>
                 <button className="btn btn-primary btn-block">Save</button>
