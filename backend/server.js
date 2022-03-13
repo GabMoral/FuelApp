@@ -9,7 +9,7 @@ const port = process.env.PORT || 9000;
 
 app.use(cors());
 app.use(express.json());
-app.use("/users/", require("./routes/usersRoute"))
+
 //3. init db , 
 const mongoURI = "mongodb+srv://zkyara:SoftwareDesign@cluster0.jvvyq.mongodb.net/myDatabase?retryWrites=true&w=majority";
 
