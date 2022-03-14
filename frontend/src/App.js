@@ -10,7 +10,23 @@ import Quote from "./components/Fuel/quote";
 import History from "./components/Fuel/history";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
-function App() {
+class App extends React.Component{
+  constructor(props){
+    super(props);
+    this.state={apiResponse: ""};
+  }
+
+  callAPI(){
+    fetch("http://localhost:9000/testAPI")
+      .then(res => res.text())
+      .then(res => this.setState({apiResponse: res}));
+  }
+
+  componentWillMount(){
+    this.callAPI();
+  }
+
+render() {
   return (
     <BrowserRouter>
       <div className="App">
@@ -26,11 +42,12 @@ function App() {
               <Route exact path="/quote" component={Quote} />
               <Route exact path="/history" component={History} />
             </Switch>
+            <p>{this.state.apiResponse}</p>
           </div>
         </div>
       </div>
     </BrowserRouter>
   );
 }
-
+}
 export default App;
