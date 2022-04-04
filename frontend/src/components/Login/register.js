@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 //import Validate from 'C:/Users/Gabriel/Desktop/App/frontend/src/components/validate';
-//import axios from 'axios';
+import axios from 'axios';
 
 export default class Register extends Component {
     handleSubmit = e => {
@@ -15,7 +15,7 @@ export default class Register extends Component {
         
         console.log(data);
         
-        /*axios.post('http://localhost:8000/register', data).then(
+        axios.post('http://localhost:5000/api/users', data).then(
             res => {
                 console.log(res)
             }
@@ -23,7 +23,7 @@ export default class Register extends Component {
             err => {
                 console.log(err);
             }
-        )*/
+        )
     };
 
     render() {

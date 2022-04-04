@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-//import axios from 'axios';
+import axios from 'axios';
 
 export default class Login extends Component {
     handleSubmit = e => {
@@ -13,13 +13,13 @@ export default class Login extends Component {
         if (this.username == adminLogin.username && this.password == adminLogin.password) {
             console.log("Logged in");
         }
-        /*axios.post('http://localhost:8000/login', data)
+        axios.post('http://localhost:5000/api/users/login', data)
             .then(res => {
                 console.log(res)
             })
             .catch(err => {
                 console.log(err)
-            })*/
+            })
     };
 
     render() {
