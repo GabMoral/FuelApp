@@ -2,6 +2,8 @@
 const express = require("express");
 const dotenv = require('dotenv');
 const connectDB = require("./config/db");
+const userRoutes = require('./routes/userRoutes');
+const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 //import cors from "cors";
 //import mongoose from "mongoose";
 
@@ -17,7 +19,10 @@ app.use(express.json());
 
 app.get("/", (req, res) => res.status(200).send("Hello"));
 
+app.use("/api/users", userRoutes);
 
+app.use(notFound)
+app.use(errorHandler)
 
 //listen to port  
 app.listen(port, () => console.log(`Listening on port: ${port}`));
