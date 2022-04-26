@@ -15,7 +15,7 @@ export default class Register extends Component {
         
         console.log(data);
         
-        axios.post('http://localhost:5000/api/users', data).then(
+        axios.post('http://localhost:5000/api/users/register', data).then(
             res => {
                 console.log(res)
             }

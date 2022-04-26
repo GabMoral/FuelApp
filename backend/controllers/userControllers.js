@@ -3,7 +3,7 @@ const asyncHandler = require("express-async-handler");
 const User = require('../models/userModel');
 
 const registerUser = asyncHandler(async (req, res) => {
-    const { username, password } = req.body;
+    const { username, password, password_confirm } = req.body;
 
     const userExists = await User.findOne({ username });
 
@@ -15,6 +15,7 @@ const registerUser = asyncHandler(async (req, res) => {
     const user = await User.create({
         username, 
         password,
+        password_confirm,
     });
 
     if (user) {
