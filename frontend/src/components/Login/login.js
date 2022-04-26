@@ -9,10 +9,7 @@ export default class Login extends Component {
             password: this.password
         };
         console.log(data);
-        const adminLogin = {username: "admin1", password: "admin123"}
-        if (this.username == adminLogin.username && this.password == adminLogin.password) {
-            console.log("Logged in");
-        }
+       
         axios.post('http://localhost:5000/api/users/login', data)
             .then(res => {
                 console.log(res)
