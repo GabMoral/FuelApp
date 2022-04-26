@@ -29,13 +29,13 @@ export default class Login extends Component {
                     <input type="text" className="form-control" placeholder="Username" 
                         onChange={e => this.username = e.target.value}/>
                 </div>
-
+                <br></br>
                 <div className="form-group">
                     <label>Password</label>
                     <input type="password" className="form-control" placeholder="Password" 
                         onChange={e => this.password = e.target.value}/>
                 </div>
-
+                <br></br>
                 <button className="btn btn-primary btn-block">Login</button>
                 <span className="form-input-login"> Don't have an account? Sign Up <a href='/register'>here</a></span>
             </form>
