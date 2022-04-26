@@ -9,7 +9,6 @@ export default class Profile extends Component {
         this.onChangeAdd1 = this.onChangeAdd1.bind(this);
         this.onChangeAdd2 = this.onChangeAdd2.bind(this);
         this.onChangeCity = this.onChangeCity.bind(this);
-        this.onChangeState = this.onChangeState.bind(this);
         this.onChangeZip = this.onChangeZip.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
