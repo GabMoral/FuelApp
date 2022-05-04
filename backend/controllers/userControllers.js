@@ -1,6 +1,7 @@
 //here we create new data that we want to pass to front end
 const asyncHandler = require("express-async-handler");
 const User = require('../models/userModel');
+const generateToken = require("../utils/generateToken");
 
 const registerUser = asyncHandler(async (req, res) => {
     const { username, password } = req.body;
@@ -23,6 +24,7 @@ const registerUser = asyncHandler(async (req, res) => {
             _id:user._id,
             username: user.username,
             isAdmin: user.isAdmin,
+            token: generateToken(user._id),
         });
     } else {
         res.status(400)
@@ -41,6 +43,7 @@ const authUser = asyncHandler(async (req, res) => {
             _id:user._id,
             username: user.username,
             isAdmin: user.isAdmin,
+            token: generateToken(user._id),
         })
     } else {
         res.status(400)
