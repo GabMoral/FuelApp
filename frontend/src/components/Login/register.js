@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import Loading from "../loading.js";
 import ErrorMessage from "../errorMessage.js";
 import axios from 'axios';
+import {Link, useHistory} from "react-router-dom";
+import { Alert } from "react-bootstrap";
 
 const Register = () => {
 
@@ -12,6 +14,8 @@ const Register = () => {
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState(null);
+    const [success, setSuccess] = useState(null);
+    const history = useHistory();
 
     //useEffect(() => {
     //    const userInfo = localStorage.getItem("userInfo");
@@ -26,8 +30,11 @@ const Register = () => {
 
         if (password !== confirmPassword) {
             setMessage("Passwords do not match.");
+            setError(false);
         } else {
             setMessage(null)
+            setError(false);
+            
             try {
                 const config = {
                     headers: {
@@ -47,14 +54,16 @@ const Register = () => {
                 );
                 
                 console.log(data);
-                localStorage.setItem("userInfo", JSON.stringify(data));
+                //localStorage.setItem("userInfo", JSON.stringify(data));
                 setLoading(false);
             } catch (error) {
                 setError(error.response.data.message);
                 setLoading(false);
             }
         }
+        
     };
+    
 
     return (
         <form onSubmit={handleSubmit}>
@@ -63,6 +72,7 @@ const Register = () => {
                 {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
                 {loading && <Loading />}
                 {message && <ErrorMessage variant="danger">{message}</ErrorMessage>}
+                
                 <label>Username</label>
                 <input type="text" className="form-control" placeholder="Username" 
                     value={username}

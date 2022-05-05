@@ -11,13 +11,12 @@ const Login = ({history}) => {
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
 
-    //useEffect(() => {
-    //    const userInfo = localStorage.getItem("userInfo");
-
-    //    if(userInfo) {
-    //        history.push("/profile");
-    //    }
-    //}, [history]);
+    useEffect(() => {
+        const userInfo = localStorage.getItem("userInfo")
+        if(userInfo) {
+            history.push("/profile");
+        }
+    }, [history]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -50,8 +49,7 @@ const Login = ({history}) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}
-        >
+        <form onSubmit={handleSubmit}>
             <h3>Login</h3>
 
             <div className="form-group">
