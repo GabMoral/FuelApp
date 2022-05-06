@@ -26,7 +26,6 @@ const registerUser = asyncHandler(async (req, res) => {
             isAdmin: user.isAdmin,
             token: generateToken(user._id),
         });
-        throw new Error('Success')
     } else {
         res.status(400)
         throw new Error('Error Occured')
@@ -45,13 +44,13 @@ const authUser = asyncHandler(async (req, res) => {
             username: user.username,
             isAdmin: user.isAdmin,
             token: generateToken(user._id),
-        })
-        throw new Error('Success')
+        });
     } else {
         res.status(400)
         throw new Error('Invalid username or password')
     }
 });
+
 
 //exports.usersController = (req, res) => {
     //req.json({

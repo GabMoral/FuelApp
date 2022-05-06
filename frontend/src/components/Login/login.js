@@ -6,10 +6,11 @@ import ErrorMessage from "../errorMessage.js";
 
 const Login = ({history}) => {
 
-    const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")
-    const [error, setError] = useState(false)
-    const [loading, setLoading] = useState(false)
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
 
     useEffect(() => {
         const userInfo = localStorage.getItem("userInfo")
@@ -22,6 +23,7 @@ const Login = ({history}) => {
         e.preventDefault();
 
         try {
+
             const config = {
                 headers: {
                     "Content-type":"application/json"
@@ -42,6 +44,7 @@ const Login = ({history}) => {
             console.log(data);
             localStorage.setItem("userInfo", JSON.stringify(data));
             setLoading(false);
+            setSuccess(true);
         } catch (error) {
             setError(error.response.data.message);
             setLoading(false);
@@ -49,30 +52,44 @@ const Login = ({history}) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h3>Login</h3>
+        <>
+            {success ? (
+                <section>
+                    <h3>You are logged in!</h3>
+                    <br />
+                    <p>
+                        <a href='/'>Go to Home</a>
+                    </p>
+                </section>
+            ) : (
+            <section>
+            <form onSubmit={handleSubmit}>
+                <h3>Login</h3>
 
-            <div className="form-group">
-                {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
-                {loading && <Loading />}
-                <label>Username</label>
-                <input type="text" className="form-control" placeholder="Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    />
-            </div>
-            <br></br>
-            <div className="form-group">
-                <label>Password</label>
-                <input type="password" className="form-control" placeholder="Password" 
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    />
-            </div>
-            <br></br>
-            <button className="btn btn-primary btn-block">Login</button>
-            <span className="form-input-login"> Don't have an account? Sign Up <a href='/register'>here</a></span>
-        </form>
+                <div className="form-group">
+                    {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+                    {loading && <Loading />}
+                    <label>Username</label>
+                    <input type="text" className="form-control" placeholder="Username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        />
+                </div>
+                <br></br>
+                <div className="form-group">
+                    <label>Password</label>
+                    <input type="password" className="form-control" placeholder="Password" 
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        />
+                </div>
+                <br></br>
+                <button className="btn btn-primary btn-block">Login</button>
+                <span className="form-input-login"> Don't have an account? Sign Up <a href='/register'>here</a></span>
+            </form>
+            </section>
+            )}
+        </>
     )
 };
 

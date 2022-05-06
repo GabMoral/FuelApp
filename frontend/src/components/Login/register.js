@@ -1,10 +1,7 @@
-import React, {Component} from 'react';
-import { useEffect, useState } from "react";
+import React, { useState } from 'react';
 import Loading from "../loading.js";
 import ErrorMessage from "../errorMessage.js";
 import axios from 'axios';
-import {Link, useHistory} from "react-router-dom";
-import { Alert } from "react-bootstrap";
 
 const Register = () => {
 
@@ -14,16 +11,6 @@ const Register = () => {
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState(null);
-    const [success, setSuccess] = useState(null);
-    const history = useHistory();
-
-    //useEffect(() => {
-    //    const userInfo = localStorage.getItem("userInfo");
-
-    //    if(userInfo) {
-    //        history.push("/profile");
-    //    }
-    //}, [history]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
